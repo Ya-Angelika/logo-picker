@@ -1,0 +1,629 @@
+{
+  "palettes": [
+    {
+      "id": "theme_mu1",
+      "color1": {
+        "type": "gradient",
+        "colors": [
+          "#7CA0E3",
+          "#0039A6"
+        ]
+      },
+      "color2": {
+        "type": "solid",
+        "colors": [
+          "#0039A6"
+        ]
+      },
+      "lightBackground": {
+        "type": "solid",
+        "colors": [
+          "#FFFFFF"
+        ]
+      },
+      "darkBackground": null,
+      "label": "multi-1 blue",
+      "dualBg": false,
+      "order": 1,
+      "defaultBg": "light"
+    },
+    {
+      "id": "theme_multi1_red",
+      "color1": {
+        "type": "solid",
+        "colors": [
+          "#E30613"
+        ]
+      },
+      "color2": {
+        "type": "gradient",
+        "colors": [
+          "#E30613",
+          "#0F0F0F"
+        ]
+      },
+      "lightBackground": {
+        "type": "solid",
+        "colors": [
+          "#FFFFFF"
+        ]
+      },
+      "darkBackground": {
+        "type": "solid",
+        "colors": [
+          "#0F0F0F"
+        ]
+      },
+      "label": "multi-1 red",
+      "order": 2,
+      "defaultBg": "light",
+      "dualBg": false
+    },
+    {
+      "id": "theme_mu2",
+      "color1": {
+        "type": "gradient",
+        "colors": [
+          "#F9B674",
+          "#C95B0C"
+        ]
+      },
+      "color2": {
+        "type": "solid",
+        "colors": [
+          "#F08336"
+        ]
+      },
+      "lightBackground": {
+        "type": "solid",
+        "colors": [
+          "#FFFFFF"
+        ]
+      },
+      "darkBackground": {
+        "type": "solid",
+        "colors": [
+          "#2A2C31"
+        ]
+      },
+      "label": "multi-2",
+      "dualBg": false,
+      "order": 3,
+      "defaultBg": "dark"
+    },
+    {
+      "id": "theme_multi2_gold",
+      "color1": {
+        "type": "solid",
+        "colors": [
+          "#B8925A"
+        ]
+      },
+      "color2": {
+        "type": "gradient",
+        "colors": [
+          "#B8925A",
+          "#313439"
+        ]
+      },
+      "lightBackground": {
+        "type": "solid",
+        "colors": [
+          "#FFFFFF"
+        ]
+      },
+      "darkBackground": {
+        "type": "solid",
+        "colors": [
+          "#0E1116"
+        ]
+      },
+      "label": "multi-2 gold",
+      "order": 4,
+      "defaultBg": "dark",
+      "dualBg": false
+    },
+    {
+      "id": "theme_mu3",
+      "color1": {
+        "type": "gradient",
+        "colors": [
+          "#176788"
+        ]
+      },
+      "color2": {
+        "type": "solid",
+        "colors": [
+          "#176788"
+        ]
+      },
+      "lightBackground": {
+        "type": "solid",
+        "colors": [
+          "#FFFFFF"
+        ]
+      },
+      "darkBackground": {
+        "type": "solid",
+        "colors": [
+          "#101010"
+        ]
+      },
+      "label": "multi-3",
+      "dualBg": false,
+      "order": 5,
+      "defaultBg": "dark"
+    },
+    {
+      "id": "theme_mu4",
+      "color1": {
+        "type": "gradient",
+        "colors": [
+          "#FFFFFF",
+          "#352D87"
+        ]
+      },
+      "color2": {
+        "type": "gradient",
+        "colors": [
+          "#352D87",
+          "#151516"
+        ]
+      },
+      "lightBackground": {
+        "type": "solid",
+        "colors": [
+          "#FFFFFF"
+        ]
+      },
+      "darkBackground": {
+        "type": "solid",
+        "colors": [
+          "#151515"
+        ]
+      },
+      "label": "multi-4",
+      "dualBg": true,
+      "order": 6,
+      "defaultBg": "light"
+    },
+    {
+      "id": "theme_mu5",
+      "color1": {
+        "type": "gradient",
+        "colors": [
+          "#474972",
+          "#8F98FF"
+        ]
+      },
+      "color2": {
+        "type": "solid",
+        "colors": [
+          "#BEC8F9"
+        ]
+      },
+      "lightBackground": {
+        "type": "solid",
+        "colors": [
+          "#FFFFFF"
+        ]
+      },
+      "darkBackground": {
+        "type": "solid",
+        "colors": [
+          "#474972"
+        ]
+      },
+      "label": "multi-5",
+      "dualBg": true,
+      "order": 7,
+      "defaultBg": "light"
+    },
+    {
+      "id": "theme_bu6",
+      "color1": {
+        "type": "gradient",
+        "colors": [
+          "#7B7B7B",
+          "#E0E0E0"
+        ]
+      },
+      "color2": {
+        "type": "gradient",
+        "colors": [
+          "#909090"
+        ]
+      },
+      "lightBackground": {
+        "type": "solid",
+        "colors": [
+          "#FFFFFF"
+        ]
+      },
+      "darkBackground": {
+        "type": "solid",
+        "colors": [
+          "#2F2F2F"
+        ]
+      },
+      "label": "multi-6",
+      "dualBg": false,
+      "order": 8,
+      "defaultBg": "light"
+    },
+    {
+      "id": "theme_bu7",
+      "color1": {
+        "type": "solid",
+        "colors": [
+          "#6124AD"
+        ]
+      },
+      "color2": {
+        "type": "gradient",
+        "colors": [
+          "#C8AAEE",
+          "#6124AD"
+        ]
+      },
+      "lightBackground": {
+        "type": "solid",
+        "colors": [
+          "#FFFFFF"
+        ]
+      },
+      "darkBackground": null,
+      "label": "multi-7",
+      "dualBg": false,
+      "order": 9,
+      "defaultBg": "light"
+    },
+    {
+      "id": "theme_multi8",
+      "label": "multi-8",
+      "order": 10,
+      "defaultBg": "dark",
+      "dualBg": false,
+      "color1": {
+        "type": "gradient",
+        "colors": [
+          "#F44336",
+          "#B71C1C"
+        ]
+      },
+      "color2": {
+        "type": "solid",
+        "colors": [
+          "#B71C1C"
+        ]
+      },
+      "lightBackground": {
+        "type": "solid",
+        "colors": [
+          "#FFFFFF"
+        ]
+      },
+      "darkBackground": {
+        "type": "solid",
+        "colors": [
+          "#0A0A0A"
+        ]
+      },
+      "textColor": "#FFFFFF"
+    },
+    {
+      "id": "theme_multi9",
+      "label": "multi-9",
+      "order": 11,
+      "defaultBg": "dark",
+      "dualBg": false,
+      "color1": {
+        "type": "gradient",
+        "colors": [
+          "#D4B47A",
+          "#8B6F3F"
+        ]
+      },
+      "color2": {
+        "type": "solid",
+        "colors": [
+          "#C6A46A"
+        ]
+      },
+      "lightBackground": {
+        "type": "solid",
+        "colors": [
+          "#FFFFFF"
+        ]
+      },
+      "darkBackground": {
+        "type": "solid",
+        "colors": [
+          "#1A1D2E"
+        ]
+      }
+    },
+    {
+      "id": "theme_multi10",
+      "label": "multi-10",
+      "order": 12,
+      "defaultBg": "light",
+      "dualBg": true,
+      "color1": {
+        "type": "gradient",
+        "colors": [
+          "#E85C1F",
+          "#8A2E0A"
+        ]
+      },
+      "color2": {
+        "type": "solid",
+        "colors": [
+          "#1A1A1A"
+        ]
+      },
+      "lightBackground": {
+        "type": "solid",
+        "colors": [
+          "#FFFFFF"
+        ]
+      },
+      "darkBackground": {
+        "type": "solid",
+        "colors": [
+          "#1A1A1A"
+        ]
+      },
+      "favicon": [
+        {
+          "bg": "#E85C1F",
+          "iconColor": "#FFFFFF"
+        }
+      ]
+    },
+    {
+      "id": "theme_multi-bu",
+      "color1": {
+        "type": "gradient",
+        "colors": [
+          "#F97054",
+          "#BC2B0E"
+        ]
+      },
+      "color2": {
+        "type": "solid",
+        "colors": [
+          "#F05F42"
+        ]
+      },
+      "lightBackground": {
+        "type": "solid",
+        "colors": [
+          "#FFFFFF"
+        ]
+      },
+      "darkBackground": {
+        "type": "solid",
+        "colors": [
+          "#0E0E0E"
+        ]
+      },
+      "label": "multi-bu / bu-7",
+      "dualBg": false,
+      "order": 13,
+      "defaultBg": "dark"
+    },
+    {
+      "id": "theme_bu1",
+      "color1": {
+        "type": "gradient",
+        "colors": [
+          "#CF181F",
+          "#6A1418"
+        ]
+      },
+      "color2": {
+        "type": "solid",
+        "colors": [
+          "#CF181F"
+        ]
+      },
+      "lightBackground": {
+        "type": "solid",
+        "colors": [
+          "#FFFFFF"
+        ]
+      },
+      "darkBackground": {
+        "type": "solid",
+        "colors": [
+          "#1C1C1C"
+        ]
+      },
+      "label": "bu1 bu2",
+      "dualBg": true,
+      "order": 14,
+      "defaultBg": "light"
+    },
+    {
+      "id": "theme_bu3",
+      "label": "bu-3",
+      "order": 15,
+      "defaultBg": "dark",
+      "dualBg": false,
+      "color1": {
+        "type": "solid",
+        "colors": [
+          "#FFFFFF"
+        ]
+      },
+      "color2": {
+        "type": "gradient",
+        "colors": [
+          "#7EC4FF",
+          "#1E3AC1"
+        ]
+      },
+      "lightBackground": {
+        "type": "solid",
+        "colors": [
+          "#FFFFFF"
+        ]
+      },
+      "darkBackground": {
+        "type": "solid",
+        "colors": [
+          "#0E0E13"
+        ]
+      },
+      "textColor": "#FFFFFF",
+      "favicon": [
+        {
+          "bg": "#FFFFFF",
+          "iconColor": {
+            "type": "gradient",
+            "colors": [
+              "#7EC4FF",
+              "#1E3AC1"
+            ]
+          }
+        },
+        {
+          "bg": "#1E3AC1",
+          "iconColor": "#FFFFFF"
+        }
+      ]
+    },
+    {
+      "id": "theme_bu4",
+      "label": "bu-4",
+      "order": 16,
+      "defaultBg": "light",
+      "dualBg": true,
+      "color1": {
+        "type": "solid",
+        "colors": [
+          "#2F5BCE"
+        ]
+      },
+      "color2": {
+        "type": "solid",
+        "colors": [
+          "#F6701F"
+        ]
+      },
+      "lightBackground": {
+        "type": "solid",
+        "colors": [
+          "#FFFFFF"
+        ]
+      },
+      "darkBackground": {
+        "type": "solid",
+        "colors": [
+          "#0E0E13"
+        ]
+      },
+      "favicon": [
+        {
+          "bg": "#FFFFFF",
+          "iconColor": "#2F5BCE"
+        },
+        {
+          "bg": "#FFFFFF",
+          "iconColor": "#F6701F"
+        }
+      ]
+    },
+    {
+      "id": "theme_bu5",
+      "label": "bu-5",
+      "order": 17,
+      "defaultBg": "light",
+      "dualBg": false,
+      "color1": {
+        "type": "solid",
+        "colors": [
+          "#209E4E"
+        ]
+      },
+      "color2": {
+        "type": "gradient",
+        "colors": [
+          "#E6FDE2",
+          "#3DCF61"
+        ]
+      },
+      "lightBackground": {
+        "type": "solid",
+        "colors": [
+          "#FFFFFF"
+        ]
+      },
+      "darkBackground": {
+        "type": "solid",
+        "colors": [
+          "#0E0E13"
+        ]
+      },
+      "textColor": "#000000",
+      "favicon": [
+        {
+          "bg": "#FFFFFF",
+          "iconColor": "#209E4E"
+        },
+        {
+          "bg": "#FFFFFF",
+          "iconColor": {
+            "type": "gradient",
+            "colors": [
+              "#E6FDE2",
+              "#3DCF61"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "theme_bu6_auto",
+      "label": "bu-6",
+      "order": 18,
+      "defaultBg": "light",
+      "dualBg": true,
+      "color1": {
+        "type": "solid",
+        "colors": [
+          "#B3271E"
+        ]
+      },
+      "color2": {
+        "type": "solid",
+        "colors": [
+          "#1D843D"
+        ]
+      },
+      "lightBackground": {
+        "type": "solid",
+        "colors": [
+          "#FFFFFF"
+        ]
+      },
+      "darkBackground": {
+        "type": "solid",
+        "colors": [
+          "#1E2126"
+        ]
+      },
+      "favicon": [
+        {
+          "bg": "#FFFFFF",
+          "iconColor": "#B3271E"
+        },
+        {
+          "bg": "#FFFFFF",
+          "iconColor": "#1D843D"
+        }
+      ]
+    }
+  ]
+}
