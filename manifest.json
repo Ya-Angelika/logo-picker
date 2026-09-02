@@ -1,0 +1,432 @@
+{
+  "logos": [
+    {
+      "id": "logo_01",
+      "file": "assets/logos/logo_01.svg"
+    },
+    {
+      "id": "logo_02",
+      "file": "assets/logos/logo_02.svg"
+    },
+    {
+      "id": "logo_03",
+      "file": "assets/logos/logo_03.svg"
+    },
+    {
+      "id": "logo_04",
+      "file": "assets/logos/logo_04.svg"
+    },
+    {
+      "id": "logo_05",
+      "file": "assets/logos/logo_05.svg"
+    },
+    {
+      "id": "logo_06",
+      "file": "assets/logos/logo_06.svg"
+    },
+    {
+      "id": "logo_07",
+      "file": "assets/logos/logo_07.svg"
+    },
+    {
+      "id": "logo_08",
+      "file": "assets/logos/logo_08.svg"
+    },
+    {
+      "id": "logo_09",
+      "file": "assets/logos/logo_09.svg"
+    },
+    {
+      "id": "logo_10",
+      "file": "assets/logos/logo_10.svg"
+    },
+    {
+      "id": "logo_11",
+      "file": "assets/logos/logo_11.svg"
+    },
+    {
+      "id": "logo_12",
+      "file": "assets/logos/logo_12.svg"
+    },
+    {
+      "id": "logo_13",
+      "file": "assets/logos/logo_13.svg"
+    },
+    {
+      "id": "logo_14",
+      "file": "assets/logos/logo_14.svg"
+    },
+    {
+      "id": "logo_15",
+      "file": "assets/logos/logo_15.svg"
+    },
+    {
+      "id": "logo_16",
+      "file": "assets/logos/logo_16.svg"
+    },
+    {
+      "id": "logo_17",
+      "file": "assets/logos/logo_17.svg"
+    },
+    {
+      "id": "logo_18",
+      "file": "assets/logos/logo_18.svg"
+    },
+    {
+      "id": "logo_19",
+      "file": "assets/logos/logo_19.svg"
+    },
+    {
+      "id": "logo_20",
+      "file": "assets/logos/logo_20.svg"
+    },
+    {
+      "id": "logo_21",
+      "file": "assets/logos/logo_21.svg"
+    },
+    {
+      "id": "logo_22",
+      "file": "assets/logos/logo_22.svg"
+    },
+    {
+      "id": "logo_23",
+      "file": "assets/logos/logo_23.svg"
+    },
+    {
+      "id": "logo_24",
+      "file": "assets/logos/logo_24.svg"
+    },
+    {
+      "id": "logo_25",
+      "file": "assets/logos/logo_25.svg"
+    },
+    {
+      "id": "logo_26",
+      "file": "assets/logos/logo_26.svg"
+    },
+    {
+      "id": "logo_27",
+      "file": "assets/logos/logo_27.svg"
+    },
+    {
+      "id": "logo_28",
+      "file": "assets/logos/logo_28.svg"
+    },
+    {
+      "id": "logo_29",
+      "file": "assets/logos/logo_29.svg"
+    },
+    {
+      "id": "logo_30",
+      "file": "assets/logos/logo_30.svg"
+    },
+    {
+      "id": "logo_31",
+      "file": "assets/logos/logo_31.svg"
+    },
+    {
+      "id": "logo_32",
+      "file": "assets/logos/logo_32.svg"
+    },
+    {
+      "id": "logo_33",
+      "file": "assets/logos/logo_33.svg"
+    },
+    {
+      "id": "logo_34",
+      "file": "assets/logos/logo_34.svg"
+    },
+    {
+      "id": "logo_35",
+      "file": "assets/logos/logo_35.svg"
+    },
+    {
+      "id": "logo_36",
+      "file": "assets/logos/logo_36.svg"
+    },
+    {
+      "id": "logo_37",
+      "file": "assets/logos/logo_37.svg"
+    },
+    {
+      "id": "logo_38",
+      "file": "assets/logos/logo_38.svg"
+    },
+    {
+      "id": "logo_39",
+      "file": "assets/logos/logo_39.svg"
+    },
+    {
+      "id": "logo_40",
+      "file": "assets/logos/logo_40.svg"
+    },
+    {
+      "id": "logo_41",
+      "file": "assets/logos/logo_41.svg"
+    },
+    {
+      "id": "logo_42",
+      "file": "assets/logos/logo_42.svg"
+    },
+    {
+      "id": "logo_43",
+      "file": "assets/logos/logo_43.svg"
+    },
+    {
+      "id": "logo_44",
+      "file": "assets/logos/logo_44.svg"
+    },
+    {
+      "id": "logo_45",
+      "file": "assets/logos/logo_45.svg"
+    },
+    {
+      "id": "logo_46",
+      "file": "assets/logos/logo_46.svg"
+    },
+    {
+      "id": "logo_47",
+      "file": "assets/logos/logo_47.svg"
+    },
+    {
+      "id": "logo_48",
+      "file": "assets/logos/logo_48.svg"
+    },
+    {
+      "id": "logo_49",
+      "file": "assets/logos/logo_49.svg"
+    },
+    {
+      "id": "logo_50",
+      "file": "assets/logos/logo_50.svg"
+    },
+    {
+      "id": "logo_51",
+      "file": "assets/logos/logo_51.svg"
+    },
+    {
+      "id": "logo_52",
+      "file": "assets/logos/logo_52.svg"
+    },
+    {
+      "id": "logo_53",
+      "file": "assets/logos/logo_53.svg"
+    },
+    {
+      "id": "logo_54",
+      "file": "assets/logos/logo_54.svg"
+    },
+    {
+      "id": "logo_55",
+      "file": "assets/logos/logo_55.svg"
+    },
+    {
+      "id": "logo_56",
+      "file": "assets/logos/logo_56.svg"
+    },
+    {
+      "id": "logo_57",
+      "file": "assets/logos/logo_57.svg"
+    },
+    {
+      "id": "logo_58",
+      "file": "assets/logos/logo_58.svg"
+    },
+    {
+      "id": "logo_59",
+      "file": "assets/logos/logo_59.svg"
+    },
+    {
+      "id": "logo_60",
+      "file": "assets/logos/logo_60.svg"
+    },
+    {
+      "id": "logo_61",
+      "file": "assets/logos/logo_61.svg"
+    },
+    {
+      "id": "logo_62",
+      "file": "assets/logos/logo_62.svg"
+    },
+    {
+      "id": "logo_63",
+      "file": "assets/logos/logo_63.svg"
+    },
+    {
+      "id": "logo_64",
+      "file": "assets/logos/logo_64.svg"
+    },
+    {
+      "id": "logo_65",
+      "file": "assets/logos/logo_65.svg"
+    },
+    {
+      "id": "logo_66",
+      "file": "assets/logos/logo_66.svg"
+    },
+    {
+      "id": "logo_67",
+      "file": "assets/logos/logo_67.svg"
+    },
+    {
+      "id": "logo_68",
+      "file": "assets/logos/logo_68.svg"
+    }
+  ],
+  "fonts": [
+    {
+      "id": "ARIAL",
+      "family": "ARIAL",
+      "file": "assets/fonts/arial.woff2",
+      "italic": false,
+      "label": "Arial",
+      "cssFamily": "font_ARIAL"
+    },
+    {
+      "id": "ARIALNB",
+      "family": "ARIALNB",
+      "file": "assets/fonts/arialnb.woff2",
+      "italic": false,
+      "label": "Arial Narrow Bold",
+      "cssFamily": "font_ARIALNB"
+    },
+    {
+      "id": "Afacad-Medium",
+      "family": "Afacad",
+      "file": "assets/fonts/afacad-medium.woff2",
+      "italic": false,
+      "label": "Afacad Medium",
+      "cssFamily": "font_Afacad_Medium"
+    },
+    {
+      "id": "Afacad-MediumItalic",
+      "family": "Afacad",
+      "file": "assets/fonts/afacad-mediumitalic.woff2",
+      "italic": true,
+      "label": "Afacad Medium Italic",
+      "cssFamily": "font_Afacad_MediumItalic"
+    },
+    {
+      "id": "Goldman-Bold",
+      "family": "Goldman",
+      "file": "assets/fonts/goldman-bold.woff2",
+      "italic": false,
+      "label": "Goldman Bold",
+      "cssFamily": "font_Goldman_Bold"
+    },
+    {
+      "id": "Iceland-Regular",
+      "family": "Iceland",
+      "file": "assets/fonts/iceland-regular.woff2",
+      "italic": false,
+      "label": "Iceland Regular",
+      "cssFamily": "font_Iceland_Regular"
+    },
+    {
+      "id": "Inter24pt-Medium",
+      "family": "Inter24pt",
+      "file": "assets/fonts/inter24pt-medium.woff2",
+      "italic": false,
+      "label": "Inter24pt Medium",
+      "cssFamily": "font_Inter24pt_Medium"
+    },
+    {
+      "id": "Inter24pt-MediumItalic",
+      "family": "Inter24pt",
+      "file": "assets/fonts/inter24pt-mediumitalic.woff2",
+      "italic": true,
+      "label": "Inter24pt Medium Italic",
+      "cssFamily": "font_Inter24pt_MediumItalic"
+    },
+    {
+      "id": "Manrope-Bold",
+      "family": "Manrope",
+      "file": "assets/fonts/manrope-bold.woff2",
+      "italic": false,
+      "label": "Manrope Bold",
+      "cssFamily": "font_Manrope_Bold"
+    },
+    {
+      "id": "Outfit-Bold",
+      "family": "Outfit",
+      "file": "assets/fonts/outfit-bold.woff2",
+      "italic": false,
+      "label": "Outfit Bold",
+      "cssFamily": "font_Outfit_Bold"
+    },
+    {
+      "id": "Outfit-Medium",
+      "family": "Outfit",
+      "file": "assets/fonts/outfit-medium.woff2",
+      "italic": false,
+      "label": "Outfit Medium",
+      "cssFamily": "font_Outfit_Medium"
+    },
+    {
+      "id": "Prompt-Bold",
+      "family": "Prompt",
+      "file": "assets/fonts/prompt-bold.woff2",
+      "italic": false,
+      "label": "Prompt Bold",
+      "cssFamily": "font_Prompt_Bold"
+    },
+    {
+      "id": "Prompt-Medium",
+      "family": "Prompt",
+      "file": "assets/fonts/prompt-medium.woff2",
+      "italic": false,
+      "label": "Prompt Medium",
+      "cssFamily": "font_Prompt_Medium"
+    },
+    {
+      "id": "Prompt-SemiBoldItalic",
+      "family": "Prompt",
+      "file": "assets/fonts/prompt-semibolditalic.woff2",
+      "italic": true,
+      "label": "Prompt Semi Bold Italic",
+      "cssFamily": "font_Prompt_SemiBoldItalic"
+    },
+    {
+      "id": "Raleway-Medium",
+      "family": "Raleway",
+      "file": "assets/fonts/raleway-medium.woff2",
+      "italic": false,
+      "label": "Raleway Medium",
+      "cssFamily": "font_Raleway_Medium"
+    },
+    {
+      "id": "Raleway-MediumItalic",
+      "family": "Raleway",
+      "file": "assets/fonts/raleway-mediumitalic.woff2",
+      "italic": true,
+      "label": "Raleway Medium Italic",
+      "cssFamily": "font_Raleway_MediumItalic"
+    },
+    {
+      "id": "Roboto-Bold",
+      "family": "Roboto",
+      "file": "assets/fonts/roboto-bold.woff2",
+      "italic": false,
+      "label": "Roboto Bold",
+      "cssFamily": "font_Roboto_Bold"
+    },
+    {
+      "id": "Roboto_SemiCondensed-Medium",
+      "family": "Roboto",
+      "file": "assets/fonts/roboto_semicondensed-medium.woff2",
+      "italic": false,
+      "label": "Roboto Semi Condensed Medium",
+      "cssFamily": "font_Roboto_SemiCondensed_Medium"
+    },
+    {
+      "id": "Roboto_SemiCondensed-MediumItalic",
+      "family": "Roboto",
+      "file": "assets/fonts/roboto_semicondensed-mediumitalic.woff2",
+      "italic": true,
+      "label": "Roboto Semi Condensed Medium Italic",
+      "cssFamily": "font_Roboto_SemiCondensed_MediumItalic"
+    }
+  ],
+  "logoCount": 68,
+  "fontCount": 19
+}

@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SQERT14KET"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SQERT14KET');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Logo Picker</title>
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<style>
+  :root { --bg:#f4f4f5; --panel:#fff; --border:#e4e4e7; --text:#18181b; --muted:#71717a; --accent:#2563eb; --radius:12px; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; background:var(--bg); color:var(--text); line-height:1.5; padding:24px; }
+  .wrap { max-width:1200px; margin:0 auto; }
+  h1 { font-size:20px; font-weight:600; margin-bottom:4px; }
+  .sub { color:var(--muted); font-size:14px; margin-bottom:24px; }
+  .controls { background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:20px; margin-bottom:24px; display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .field { display:flex; flex-direction:column; gap:6px; }
+  .field.full { grid-column:1/-1; }
+  label { font-size:13px; font-weight:500; color:var(--muted); }
+  .hint { font-size:12px; color:var(--muted); margin-top:4px; }
+  input[type="text"], select { padding:10px 12px; border:1px solid var(--border); border-radius:8px; font-size:14px; background:#fff; color:var(--text); width:100%; }
+  input[type="text"]:focus, select:focus { outline:2px solid var(--accent); border-color:var(--accent); }
+  .seg { display:inline-flex; border:1px solid var(--border); border-radius:8px; overflow:hidden; }
+  .seg button { padding:9px 16px; border:none; background:#fff; cursor:pointer; font-size:14px; color:var(--muted); }
+  .seg button.active { background:var(--accent); color:#fff; }
+  .seg.disabled { opacity:.5; pointer-events:none; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px; }
+  .card { border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; cursor:pointer; transition:transform .12s,box-shadow .12s; background:var(--panel); }
+  .card:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,.10); }
+  .card .preview { height:130px; display:flex; align-items:center; justify-content:center; padding:0 20px; }
+  .card .lockup { display:flex; align-items:center; gap:10px; max-width:100%; }
+  .card .lockup .logo { display:flex; }
+  .card .lockup .logo svg { height:40px; width:auto; flex:none; }
+  .card .lockup .name { font-size:30px; line-height:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .card .meta { border-top:1px solid var(--border); padding:10px 14px; font-size:12px; color:var(--muted); display:flex; justify-content:space-between; gap:8px; }
+  .card .meta .bgtag { color:#a1a1aa; }
+  .toolbar { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; }
+  .count { font-size:14px; color:var(--muted); }
+  .btn { padding:10px 18px; border:1px solid var(--border); background:#fff; border-radius:8px; font-size:14px; cursor:pointer; color:var(--text); }
+  .btn:hover { background:#fafafa; }
+  .btn.primary { background:var(--accent); color:#fff; border-color:var(--accent); }
+  .btn:disabled { opacity:.5; cursor:default; }
+  .modal-bg { position:fixed; inset:0; background:rgba(0,0,0,.45); display:none; align-items:center; justify-content:center; padding:24px; z-index:50; }
+  .modal-bg.open { display:flex; }
+  .modal { background:#fff; border-radius:16px; max-width:520px; width:100%; padding:24px; max-height:90vh; overflow:auto; }
+  .modal h2 { font-size:17px; margin-bottom:16px; }
+  .modal .big-preview { border-radius:12px; padding:28px; display:flex; align-items:center; justify-content:center; margin-bottom:12px; }
+  .modal .lockup { display:flex; align-items:center; gap:10px; }
+  .modal .lockup .logo { display:flex; }
+  .modal .lockup .logo svg { height:40px; width:auto; }
+  .modal .lockup .name { font-size:30px; line-height:1; white-space:nowrap; }
+  .fav-preview { display:flex; gap:16px; align-items:center; margin-bottom:20px; }
+  .modal-actions { display:flex; gap:10px; flex-wrap:wrap; }
+  .close { float:right; cursor:pointer; color:var(--muted); font-size:22px; line-height:1; }
+  .warn { font-size:12px; color:#b45309; background:#fef3c7; padding:8px 10px; border-radius:6px; margin-bottom:12px; display:none; }
+  .warn.show { display:block; }
+  .header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:24px; gap:16px; }
+  .brand { display:flex; align-items:center; gap:12px; }
+  .brand-logo { flex:none; }
+  .contact { font-size:13px; color:var(--muted); text-align:right; }
+  .contact a { color:var(--accent); text-decoration:none; font-weight:500; }
+  .contact a:hover { text-decoration:underline; }
+  /* стек-карточка для двойного фона */
+  .card.stack .preview { height:auto; flex-direction:column; gap:0; padding:0; }
+  .card.stack .row { width:100%; display:flex; align-items:center; justify-content:center; padding:18px 20px; }
+  .card.stack .row.fav { padding:18px; }
+  .card.stack .fav-box { width:64px; height:64px; border-radius:14px; display:flex; align-items:center; justify-content:center; }
+  .card.stack .fav-box svg { height:34px; width:auto; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <div class="brand">
+      <img src="assets/app-logo.svg" alt="" class="brand-logo" width="40" height="40">
+      <div>
+        <h1>Logo Picker</h1>
+        <p class="sub">Введите название, выберите вариант и скачайте логотип</p>
+      </div>
+    </div>
+    <div class="contact">По всем вопросам и ошибкам:<br><a href="https://t.me/angelika_joakim" target="_blank" rel="noopener">@angelika_joakim</a></div>
+  </div>
+  <div class="controls">
+    <div class="field full">
+      <label>Название сайта</label>
+      <input type="text" id="brandName" placeholder="Например: Nova" value="Nova">
+    </div>
+    <div class="field">
+      <label>Шаблон</label>
+      <select id="themeSelect"></select>
+    </div>
+    <div class="field">
+      <label>Фон</label>
+      <div class="seg" id="bgSeg">
+        <button data-bg="light" class="active">Светлый</button>
+        <button data-bg="dark">Тёмный</button>
+      </div>
+      <span class="hint" id="bgHint">Фон подобран под шаблон. Можно сменить вручную.</span>
+    </div>
+  </div>
+  <div class="controls" style="margin-top:-12px">
+    <div class="field full">
+      <label>Шрифт (оставьте «Все» чтобы перебирать)</label>
+      <select id="fontSelect"></select>
+    </div>
+  </div>
+  <div class="toolbar">
+    <span class="count" id="count"></span>
+    <button class="btn primary" id="moreBtn">Показать ещё</button>
+  </div>
+  <div class="grid" id="grid"></div>
+</div>
+<div class="modal-bg" id="modalBg">
+  <div class="modal">
+    <span class="close" id="modalClose">&times;</span>
+    <h2>Скачать логотип</h2>
+    <div class="warn" id="contrastWarn">Низкий контраст на этом фоне — логотип может плохо читаться.</div>
+    <div class="big-preview" id="bigPreview"></div>
+    <div class="fav-preview">
+      <div>
+        <div style="font-size:12px;color:#71717a;margin-bottom:6px;">Фавикон 180×180</div>
+        <div id="favSwatch"></div>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn primary" id="dlZip">Скачать всё (ZIP)</button>
+    </div>
+  </div>
+</div>
+<script src="lib/jszip.min.js"></script>
+<script>
+let MANIFEST=null, PALETTES=null, logoSvgCache={};
+let deck=[], deckPos=0;           // перетасованная колода и позиция раздачи
+let downloaded=new Set();         // id скачанных логотипов (уходят в хвост)
+let currentBatch=[];              // 12 логотипов текущей выдачи
+const BATCH=12; let currentSelection=null;
+const LS_KEY='logoPickerDownloaded_v1';
+let generationTracked=false;
+
+// Product analytics: never include the entered site/name in events.
+function trackEvent(eventName, params={}){
+  if(typeof window.gtag!=='function')return;
+  window.gtag('event',eventName,params);
+}
+
+function analyticsContext(extra={}){
+  const pal=typeof currentPalette==='function'&&PALETTES?currentPalette():null;
+  const fontSelect=document.getElementById('fontSelect');
+  return {
+    template_id:pal?.id||'unknown',
+    font_mode:fontSelect?.value==='__all__'?'all':(fontSelect?.value||'unknown'),
+    ...extra
+  };
+}
+
+function hexToRgb(h){h=h.replace('#','');if(h.length===3)h=h.split('').map(c=>c+c).join('');return[parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)];}
+function relLum(a){a=a.map(v=>{v/=255;return v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4);});return 0.2126*a[0]+0.7152*a[1]+0.0722*a[2];}
+function contrastRatio(a,b){const l1=relLum(hexToRgb(a)),l2=relLum(hexToRgb(b));const hi=Math.max(l1,l2),lo=Math.min(l1,l2);return(hi+0.05)/(lo+0.05);}
+function avgHex(cols){const r=cols.map(hexToRgb);const a=[0,1,2].map(i=>Math.round(r.reduce((s,c)=>s+c[i],0)/r.length));return'#'+a.map(v=>v.toString(16).padStart(2,'0')).join('');}
+function normColor(c){if(!c)return null;if(c.type==='gradient'&&c.colors.length<2)return{type:'solid',colors:[c.colors[0]]};return c;}
+
+// Оценка контраста: для градиента учитываем и среднее, и ХУДШИЙ стоп
+// (если один конец сливается с фоном — градиент штрафуется).
+const CONTRAST_OK=3.0;
+function scoreColor(c,bg){
+  if(!c)return-1;
+  if(c.type==='gradient' && c.colors.length>=2){
+    const avgC=contrastRatio(avgHex(c.colors),bg);
+    const worst=Math.min(...c.colors.map(col=>contrastRatio(col,bg)));
+    // итог — среднее между средним контрастом и худшим (тянет вниз плохие градиенты)
+    return (avgC+worst)/2;
+  }
+  return contrastRatio(c.colors[0],bg);
+}
+function pickColor(p,bg){
+  const c1=normColor(p.color1),c2=normColor(p.color2);
+  const s1=scoreColor(c1,bg),s2=scoreColor(c2,bg);
+  let chosen;
+  if(s1>=CONTRAST_OK && s2>=CONTRAST_OK){
+    // оба читаемы — предпочитаем градиент как более фирменный
+    chosen = (c1&&c1.type==='gradient') ? c1 : (c2&&c2.type==='gradient' ? c2 : c1);
+  } else {
+    // иначе — объективно лучший по контрасту
+    chosen = s1>=s2?c1:c2;
+  }
+  chosen=Object.assign({},chosen);
+  chosen._contrast=Math.max(s1,s2);
+  return chosen;
+}
+// Вариант для карточки: если оба цвета читаемы — псевдослучайно выбирает color1 или color2
+// на основе seed (например logoId). Так разные карточки в батче показывают разные варианты,
+// но для одного и того же лого выбор стабилен между рендерами.
+// Порог для смешивания ниже основного (CONTRAST_OK=3), чтобы включать "пограничные" цвета.
+const CONTRAST_MIX_OK=2.5;
+function pickColorForCard(p, bg, seed){
+  const c1=normColor(p.color1),c2=normColor(p.color2);
+  const s1=scoreColor(c1,bg),s2=scoreColor(c2,bg);
+  let chosen;
+  if(s1>=CONTRAST_MIX_OK && s2>=CONTRAST_MIX_OK){
+    // оба ок — выбираем по хешу seed'a
+    let h=0;
+    const s=String(seed);
+    for(let i=0;i<s.length;i++) h=((h<<5)-h)+s.charCodeAt(i)|0;
+    chosen = (h & 1) ? c1 : c2;
+  } else {
+    chosen = s1>=s2?c1:c2;
+  }
+  chosen=Object.assign({},chosen);
+  chosen._contrast=Math.max(s1,s2);
+  return chosen;
+}
+// Хеш строки (стабильный seed для выбора варианта)
+function hashSeed(s){
+  let h=0; s=String(s);
+  for(let i=0;i<s.length;i++) h=((h<<5)-h)+s.charCodeAt(i)|0;
+  return Math.abs(h);
+}
+// Выбор варианта фавикона. Если у палитры задан массив favicon — берём один вариант по seed.
+// Возвращает {bg: hex, color: {type,colors}}. Иначе fallback на pickColor на тёмном фоне.
+function pickFavicon(pal, seed){
+  if(pal.favicon && pal.favicon.length){
+    const v = pal.favicon[hashSeed(seed) % pal.favicon.length];
+    const ic = v.iconColor;
+    const color = (typeof ic==='string') ? {type:'solid',colors:[ic]} : ic;
+    return {bg: v.bg, color};
+  }
+  const bg = bgHexFor(pal,'dark');
+  return {bg, color: pickColor(pal,bg)};
+}
+// сплошной цвет для текста: первый стоп градиента или сам сплошной
+function solidOf(color){ return color.colors[0]; }
+// сплошной ВИДИМЫЙ цвет (для текста/фавикона): из стопов берём не-белый/не-прозрачный,
+// предпочитаем самый насыщенный (не #FFF). Нужно т.к. градиент может начинаться с белого.
+function visibleSolid(color){
+  const cols=color.colors;
+  if(cols.length===1) return cols[0];
+  // отфильтровать почти белые
+  const nonWhite=cols.filter(c=>{
+    const [r,g,b]=hexToRgb(c);
+    return !(r>240&&g>240&&b>240);
+  });
+  return nonWhite.length ? nonWhite[nonWhite.length-1] : cols[cols.length-1];
+}
+// Цвет текста: если у палитры задан textColor — берём его. Иначе — по цвету логотипа.
+function textColorFor(palette, logoColor){
+  if(palette && palette.textColor) return palette.textColor;
+  return visibleSolid(logoColor);
+}
+function escapeXml(s){return s.replace(/[<>&'"]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;',"'":'&apos;','"':'&quot;'}[c]));}
+function escapeHtml(s){return s.replace(/[<>&]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));}
+
+// нормализация названия: убрать TLD на конце, заменить дефисы на пробелы
+const TLD_LIST=['ru','com','рф','org','net','io','biz','info','pro','site','store','shop','me','co','ai'];
+function normalizeName(raw){
+  if(!raw) return '';
+  let s=raw.trim();
+  // убрать .tld в конце (с возможной точкой/пробелом)
+  for(const tld of TLD_LIST){
+    const re=new RegExp('\\.'+tld+'\\s*$','i');
+    if(re.test(s)){ s=s.replace(re,''); break; }
+  }
+  // дефисы -> пробелы
+  s=s.replace(/-+/g,' ').replace(/\s+/g,' ').trim();
+  return s;
+}
+
+// точный замер ширины текста через скрытый span
+const _measureEl=(()=>{const e=document.createElement('span');e.style.cssText='position:absolute;visibility:hidden;white-space:nowrap;top:-9999px;left:-9999px';document.body.appendChild(e);return e;})();
+function measureText(text,fontFamily,fontSize){
+  _measureEl.style.fontFamily=`'${fontFamily}',sans-serif`;
+  _measureEl.style.fontSize=fontSize+'px';
+  _measureEl.textContent=text;
+  return _measureEl.getBoundingClientRect().width;
+}
+
+// рассчитать раскладку текста в заданную ширину (по умолчанию 100px) и высоту 40px
+// возвращает {lines: [...], fontSize, lineHeight}
+const MAX_TEXT_W=100, H_TARGET=40;
+function layoutText(name, cssFamily){
+  const norm=normalizeName(name);
+  if(!norm) return null;
+  // одна строка стандартным кеглем?
+  const baseSize=30;
+  const w1=measureText(norm,cssFamily,baseSize);
+  if(w1<=MAX_TEXT_W) return {lines:[norm], fontSize:baseSize, lineHeight:baseSize};
+  // есть пробелы — пробуем две строки
+  const parts=norm.split(' ');
+  if(parts.length>=2){
+    // делим примерно пополам по количеству слов
+    const mid=Math.ceil(parts.length/2);
+    const line1=parts.slice(0,mid).join(' ');
+    const line2=parts.slice(mid).join(' ');
+    // подбираем размер под 2 строки * lineHeight <= 40, и каждая строка <= 100
+    for(let fs=18; fs>=14; fs--){
+      const lh=Math.round(fs*1.05);
+      if(lh*2>H_TARGET) continue;
+      const w_a=measureText(line1,cssFamily,fs);
+      const w_b=measureText(line2,cssFamily,fs);
+      if(w_a<=MAX_TEXT_W && w_b<=MAX_TEXT_W){
+        return {lines:[line1,line2], fontSize:fs, lineHeight:lh};
+      }
+    }
+  }
+  // одно слово или не влезло двумя строками — уменьшаем кегль одной строкой
+  for(let fs=28; fs>=16; fs--){
+    if(measureText(norm,cssFamily,fs)<=MAX_TEXT_W){
+      return {lines:[norm], fontSize:fs, lineHeight:fs};
+    }
+  }
+  // совсем не влезло — отдаём минимальный кегль, обрежется
+  return {lines:[norm], fontSize:16, lineHeight:16};
+}
+
+function buildLockupSvg(logoSvg,name,color,cssFamily,fontDataUrl,palette){
+  const vb=logoSvg.match(/viewBox="([\d.\s-]+)"/);let lw=40,lh=40;
+  if(vb){const p=vb[1].trim().split(/\s+/).map(Number);lw=p[2];lh=p[3];}
+  const inner=logoSvg.replace(/<svg[^>]*>/,'').replace(/<\/svg>/,'');
+  const H=40,gap=10,logoW=lw*(H/lh);
+  // считаем раскладку текста под лимит 100px
+  const lay=name?layoutText(name,cssFamily):null;
+  // ширина текста = максимум по строкам в реальном замере
+  let textW=0;
+  if(lay){
+    for(const line of lay.lines){
+      const w=measureText(line,cssFamily,lay.fontSize);
+      if(w>textW) textW=w;
+    }
+  }
+  const totalW=Math.ceil(logoW+(lay?gap+textW:0));
+  let logoFill,defs='';
+  const textFill=textColorFor(palette,color);
+  if(color.type==='gradient'&&color.colors.length>=2){
+    const gid='lg_'+Math.random().toString(36).slice(2,8);
+    defs=`<defs><linearGradient id="${gid}" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="${lw}" y2="${lh}"><stop offset="0" stop-color="${color.colors[0]}"/><stop offset="1" stop-color="${color.colors[color.colors.length-1]}"/></linearGradient></defs>`;
+    logoFill=`url(#${gid})`;
+  } else { logoFill=color.colors[0]; }
+  const ff=fontDataUrl?`<style>@font-face{font-family:"${cssFamily}";src:url(${fontDataUrl});}</style>`:'';
+  // строим SVG-текст: одна или две строки, выравнивание по левому краю, вертикально по центру 40px
+  let textSvg='';
+  if(lay){
+    const x=logoW+gap;
+    if(lay.lines.length===1){
+      // одна строка — baseline на ~74% высоты, как раньше
+      textSvg=`<text x="${x}" y="${H*0.74}" font-family="${cssFamily}" font-size="${lay.fontSize}" fill="${textFill}">${escapeXml(lay.lines[0])}</text>`;
+    } else {
+      // две строки, центрированы по вертикали в H=40
+      const lh=lay.lineHeight, fs=lay.fontSize;
+      const totalH=lh*lay.lines.length;
+      const startY=(H-totalH)/2 + fs*0.85; // baseline первой строки
+      textSvg=lay.lines.map((l,i)=>`<text x="${x}" y="${startY+i*lh}" font-family="${cssFamily}" font-size="${fs}" fill="${textFill}">${escapeXml(l)}</text>`).join('\n');
+    }
+  }
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${totalW}" height="${H}" viewBox="0 0 ${totalW} ${H}">
+${ff}${defs}
+<svg x="0" y="0" width="${logoW}" height="${H}" viewBox="0 0 ${lw} ${lh}">${inner.replace(/currentColor/g,logoFill)}</svg>
+${textSvg}
+</svg>`;
+}
+
+async function loadAll(){
+  MANIFEST=await(await fetch('manifest.json')).json();
+  PALETTES=(await(await fetch('assets/palettes.json')).json()).palettes;
+  const st=document.createElement('style');
+  st.textContent=MANIFEST.fonts.map(f=>`@font-face{font-family:"${f.cssFamily}";src:url("${f.file}") format("woff2");font-display:swap;}`).join('\n');
+  document.head.appendChild(st);
+  const ts=document.getElementById('themeSelect');
+  PALETTES.forEach(p=>{const o=document.createElement('option');o.value=p.id;o.textContent=p.label;ts.appendChild(o);});
+  const fs=document.getElementById('fontSelect');
+  const ao=document.createElement('option');ao.value='__all__';ao.textContent='Все шрифты (перебор)';fs.appendChild(ao);
+  MANIFEST.fonts.forEach(f=>{const o=document.createElement('option');o.value=f.id;o.textContent=f.label;fs.appendChild(o);});
+
+  // восстановить список скачанных из localStorage
+  const allIds=MANIFEST.logos.map(l=>l.id);
+  const savedDl=loadDownloaded();
+  downloaded = new Set((savedDl||[]).filter(id=>allIds.includes(id)));
+  buildDeck();
+  dealBatch();
+  await Promise.all(MANIFEST.logos.map(async l=>{logoSvgCache[l.id]=await(await fetch(l.file)).text();}));
+  syncBgControlsToTheme();
+  render();
+}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function saveDownloaded(){try{localStorage.setItem(LS_KEY,JSON.stringify([...downloaded]));}catch(e){}}
+function loadDownloaded(){try{return JSON.parse(localStorage.getItem(LS_KEY));}catch(e){return null;}}
+
+// собрать колоду: свежие (перетасованы) спереди, скачанные (перетасованы) в хвосте
+function buildDeck(){
+  const all=MANIFEST.logos.map(l=>l.id);
+  const fresh=shuffle(all.filter(id=>!downloaded.has(id)));
+  const used=shuffle(all.filter(id=>downloaded.has(id)));
+  deck=fresh.concat(used);
+  deckPos=0;
+}
+// раздать следующие 12; если колода кончилась — пересобрать
+function dealBatch(){
+  if(deckPos>=deck.length) buildDeck();
+  currentBatch=deck.slice(deckPos, deckPos+BATCH);
+  // если в хвосте осталось меньше 12 — добиваем с начала свежей колоды
+  if(currentBatch.length<BATCH){
+    buildDeck();
+    currentBatch=deck.slice(0,BATCH);
+    deckPos=BATCH;
+  } else {
+    deckPos+=BATCH;
+  }
+  fontSeed=Math.floor(Math.random()*1e9); // новые случайные шрифты
+}
+
+function currentPalette(){const id=document.getElementById('themeSelect').value;return PALETTES.find(p=>p.id===id);}
+function currentBg(){return document.querySelector('#bgSeg button.active').dataset.bg;}
+function bgHexFor(pal,bg){const node=bg==='dark'?pal.darkBackground:pal.lightBackground;if(!node)return bg==='dark'?'#000000':'#FFFFFF';return node.colors[0];}
+// случайный, но стабильный шрифт для позиции (меняется при "Показать ещё")
+let fontSeed = Math.floor(Math.random()*1e9);
+function seededRand(n){ let x=Math.sin(n)*10000; return x-Math.floor(x); }
+function fontForIndex(i){
+  const sel=document.getElementById('fontSelect').value;
+  if(sel!=='__all__')return MANIFEST.fonts.find(f=>f.id===sel);
+  // i — локальный индекс в партии; fontSeed меняется при каждой новой партии,
+  // поэтому шрифты стабильны при перерисовке, но обновляются на "Показать ещё"
+  const idx=Math.floor(seededRand(fontSeed + i*7.13) * MANIFEST.fonts.length);
+  return MANIFEST.fonts[idx];
+}
+
+// при смене шаблона: выставить дефолтный фон и заблокировать переключатель для dualBg
+function syncBgControlsToTheme(){
+  const pal=currentPalette();
+  const seg=document.getElementById('bgSeg');
+  const hint=document.getElementById('bgHint');
+  if(pal.dualBg){
+    seg.classList.add('disabled');
+    hint.textContent='Этот шаблон показывает оба фона — светлый и тёмный.';
+  } else {
+    seg.classList.remove('disabled');
+    hint.textContent='Фон подобран под шаблон. Можно сменить вручную.';
+    document.querySelectorAll('#bgSeg button').forEach(b=>b.classList.toggle('active', b.dataset.bg===pal.defaultBg));
+  }
+}
+
+function makeCard(logoId, font, pal, bg){
+  const name=document.getElementById('brandName').value.trim();
+  const fav=pickFavicon(pal, logoId+'|'+font.id);
+  const card=document.createElement('div');card.className='card stack';
+  card.innerHTML=`<div class="preview">
+    ${lockupRowHtml(logoId,font,pal,bg,name)}
+    <div class="row fav" style="background:${bgHexFor(pal,bg)}">
+      <div class="fav-box" style="background:${fav.bg}">${logoWithFill(logoId,fav.color)}</div>
+    </div>
+  </div><div class="meta"><span>${logoId}</span><span>${font.label}</span></div>`;
+  card.onclick=()=>openModal(logoId,font.id,bg);
+  return card;
+}
+
+// один ряд лого+текст на заданном фоне (для стек-карточки)
+function lockupRowHtml(logoId, font, pal, bg, name){
+  const bgHex=bgHexFor(pal,bg);
+  // Разные карточки получают разные варианты цвета (если оба читаемы)
+  const color=pickColorForCard(pal,bgHex,logoId+'|'+font.id);
+  const textColor=textColorFor(pal,color);
+  const logoHtml=logoWithFill(logoId,color);
+  let nameHtml='';
+  if(name){
+    const lay=layoutText(name, font.cssFamily);
+    if(lay){
+      const lines=lay.lines.map(l=>`<div>${escapeHtml(l)}</div>`).join('');
+      nameHtml=`<span class="name" style="font-family:'${font.cssFamily}';color:${textColor};font-size:${lay.fontSize}px;line-height:${lay.lineHeight}px;text-align:left;display:flex;flex-direction:column;justify-content:center;height:40px">${lines}</span>`;
+    }
+  }
+  return `<div class="row" style="background:${bgHex}"><div class="lockup">
+    <span class="logo">${logoHtml}</span>
+    ${nameHtml}
+  </div></div>`;
+}
+
+// логотип с заливкой: градиент (через SVG-обёртку) если есть, иначе сплошной currentColor
+function logoWithFill(logoId, color){
+  let svg=logoSvgCache[logoId];
+  if(color.type==='gradient' && color.colors.length>=2){
+    const gid='g_'+logoId.replace(/[^a-z0-9]/gi,'')+'_'+Math.random().toString(36).slice(2,6);
+    // userSpaceOnUse + координаты на весь viewBox -> единый градиент через всю фигуру,
+    // а не отдельный на каждый <path>
+    const vb=svg.match(/viewBox="([\d.\s-]+)"/);
+    let w=40,h=40;
+    if(vb){const p=vb[1].trim().split(/\s+/).map(Number);w=p[2];h=p[3];}
+    const grad=`<defs><linearGradient id="${gid}" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="${w}" y2="${h}"><stop offset="0" stop-color="${color.colors[0]}"/><stop offset="1" stop-color="${color.colors[color.colors.length-1]}"/></linearGradient></defs>`;
+    svg=svg.replace(/(<svg[^>]*>)/, `$1${grad}`).replace(/currentColor/g, `url(#${gid})`);
+    return svg;
+  }
+  return `<span style="color:${color.colors[0]};display:flex">${svg}</span>`;
+}
+
+// стек-карточка: светлый ряд + тёмный ряд + фавикон (для dualBg шаблонов)
+function makeStackCard(logoId, font, pal){
+  const name=document.getElementById('brandName').value.trim();
+  const fav=pickFavicon(pal, logoId+'|'+font.id);
+  const card=document.createElement('div');card.className='card stack';
+  card.innerHTML=`<div class="preview">
+    ${lockupRowHtml(logoId,font,pal,'light',name)}
+    ${lockupRowHtml(logoId,font,pal,'dark',name)}
+    <div class="row fav" style="background:${bgHexFor(pal,'light')}">
+      <div class="fav-box" style="background:${fav.bg}">${logoWithFill(logoId,fav.color)}</div>
+    </div>
+  </div><div class="meta"><span>${logoId}</span><span>${font.label}</span></div>`;
+  card.onclick=()=>openModal(logoId,font.id,'dark');
+  return card;
+}
+
+function render(){
+  const grid=document.getElementById('grid');grid.innerHTML='';
+  const pal=currentPalette();
+  currentBatch.forEach((logoId,i)=>{
+    const font=fontForIndex(i);
+    if(pal.dualBg){
+      grid.appendChild(makeStackCard(logoId,font,pal));
+    } else {
+      grid.appendChild(makeCard(logoId,font,pal,currentBg()));
+    }
+  });
+  const total=MANIFEST.logos.length;
+  document.getElementById('count').textContent=`Показано ${currentBatch.length} из ${total} логотипов · скачано ${downloaded.size}`;
+}
+
+function openModal(logoId,fontId,bg){
+  currentSelection={logoId,fontId,bg};
+  trackEvent('logo_select',analyticsContext({logo_id:logoId,font_id:fontId,background:bg}));
+  const pal=currentPalette();
+  const bgHex=bgHexFor(pal,bg);
+  const color=pickColor(pal,bgHex);
+  const name=document.getElementById('brandName').value.trim();
+  const font=MANIFEST.fonts.find(f=>f.id===fontId);
+  const textColor=textColorFor(pal,color);
+  const bp=document.getElementById('bigPreview');
+  bp.style.background=bgHex;
+  let nameHtml='';
+  if(name){
+    const lay=layoutText(name, font.cssFamily);
+    if(lay){
+      const lines=lay.lines.map(l=>`<div>${escapeHtml(l)}</div>`).join('');
+      nameHtml=`<span class="name" style="font-family:'${font.cssFamily}';color:${textColor};font-size:${lay.fontSize}px;line-height:${lay.lineHeight}px;text-align:left;display:flex;flex-direction:column;justify-content:center;height:40px">${lines}</span>`;
+    }
+  }
+  bp.innerHTML=`<div class="lockup"><span class="logo">${logoWithFill(logoId,color)}</span>${nameHtml}</div>`;
+  const fav=document.getElementById('favSwatch');
+  fav.style.cssText=`width:90px;height:90px;border-radius:10px;background:${bgHex};display:flex;align-items:center;justify-content:center;color:${color.colors[0]};`;
+  fav.innerHTML=logoSvgCache[logoId];
+  const fsvg=fav.querySelector('svg');if(fsvg){fsvg.style.height='50px';fsvg.style.width='auto';}
+  document.getElementById('contrastWarn').classList.toggle('show', color._contrast<CONTRAST_OK);
+  document.getElementById('modalBg').classList.add('open');
+}
+function closeModal(){document.getElementById('modalBg').classList.remove('open');}
+
+async function fontDataUrl(file){const buf=await(await fetch(file)).arrayBuffer();let bin='';const b=new Uint8Array(buf);for(let i=0;i<b.length;i++)bin+=String.fromCharCode(b[i]);return'data:font/woff2;base64,'+btoa(bin);}
+
+// сгенерировать фавикон PNG как Blob — логотип красится как в превью (градиент или сплошной)
+async function makeFaviconBlob(logoId,bgHex,color){
+  const SIZE=180,R=20;
+  const canvas=document.createElement('canvas');canvas.width=SIZE;canvas.height=SIZE;
+  const ctx=canvas.getContext('2d');
+  ctx.beginPath();ctx.moveTo(R,0);ctx.arcTo(SIZE,0,SIZE,SIZE,R);ctx.arcTo(SIZE,SIZE,0,SIZE,R);ctx.arcTo(0,SIZE,0,0,R);ctx.arcTo(0,0,SIZE,0,R);ctx.closePath();
+  ctx.fillStyle=bgHex;ctx.fill();
+  // логотип: тот же приём что в logoWithFill — единый градиент или сплошной
+  let svgText=logoSvgCache[logoId];
+  if(color.type==='gradient' && color.colors.length>=2){
+    const vb=svgText.match(/viewBox="([\d.\s-]+)"/);
+    let w=40,h=40; if(vb){const p=vb[1].trim().split(/\s+/).map(Number);w=p[2];h=p[3];}
+    const gid='fav_'+Math.random().toString(36).slice(2,6);
+    const grad=`<defs><linearGradient id="${gid}" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="${w}" y2="${h}"><stop offset="0" stop-color="${color.colors[0]}"/><stop offset="1" stop-color="${color.colors[color.colors.length-1]}"/></linearGradient></defs>`;
+    svgText=svgText.replace(/(<svg[^>]*>)/, `$1${grad}`).replace(/currentColor/g, `url(#${gid})`);
+  } else {
+    svgText=svgText.replace(/currentColor/g, color.colors[0]);
+  }
+  const img=new Image();
+  const url='data:image/svg+xml;base64,'+btoa(unescape(encodeURIComponent(svgText)));
+  await new Promise((res,rej)=>{img.onload=res;img.onerror=rej;img.src=url;});
+  const target=SIZE*0.55,ratio=(img.width||40)/(img.height||40);
+  let dw=target,dh=target;if(ratio>1)dh=target/ratio;else dw=target*ratio;
+  ctx.drawImage(img,(SIZE-dw)/2,(SIZE-dh)/2,dw,dh);
+  return await new Promise(res=>canvas.toBlob(res,'image/png'));
+}
+
+async function downloadZip(){
+  const{logoId,fontId,bg}=currentSelection;
+  const pal=currentPalette();
+  const name=(document.getElementById('brandName').value.trim()||'logo');
+  const font=MANIFEST.fonts.find(f=>f.id===fontId);
+  const fdu=await fontDataUrl(font.file);
+
+  // фавикон — используем тот же вариант что показан в карточке
+  const fav=pickFavicon(pal, logoId+'|'+fontId);
+  const favBlob=await makeFaviconBlob(logoId,fav.bg,fav.color);
+
+  const zip=new JSZip();
+  const folder=zip.folder(name);
+  folder.file(`${name}-favicon.png`, favBlob);
+
+  if(pal.dualBg){
+    // шаблон с двумя фонами — кладём оба SVG
+    const lightColor=pickColor(pal,bgHexFor(pal,'light'));
+    const darkColor=pickColor(pal,bgHexFor(pal,'dark'));
+    folder.file(`лого-light bg.svg`, buildLockupSvg(logoSvgCache[logoId],name,lightColor,font.cssFamily,fdu,pal));
+    folder.file(`лого-dark bg.svg`,  buildLockupSvg(logoSvgCache[logoId],name,darkColor, font.cssFamily,fdu,pal));
+  } else {
+    // одиночный шаблон — только активный фон
+    const color=pickColor(pal,bgHexFor(pal,bg));
+    const svg=buildLockupSvg(logoSvgCache[logoId],name,color,font.cssFamily,fdu,pal);
+    folder.file(`лого-${bg==='dark'?'dark':'light'} bg.svg`, svg);
+  }
+  const blob=await zip.generateAsync({type:'blob'});
+
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);a.download=`${name}.zip`;
+  document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+
+  trackEvent('logo_download',analyticsContext({logo_id:logoId,font_id:fontId,background:bg}));
+
+  // скачанный логотип -> в конец очереди + сохранить
+  markDownloaded(logoId);
+  closeModal();
+  render();
+}
+function markDownloaded(id){ downloaded.add(id); saveDownloaded(); }
+
+document.getElementById('moreBtn').onclick=()=>{
+  dealBatch();render();
+  trackEvent('show_more',analyticsContext());
+};
+document.getElementById('brandName').addEventListener('input',()=>{
+  render();
+  if(!generationTracked){
+    generationTracked=true;
+    trackEvent('logo_generate',analyticsContext());
+  }
+});
+document.getElementById('themeSelect').addEventListener('change',()=>{syncBgControlsToTheme();render();});
+document.getElementById('fontSelect').addEventListener('change',render);
+document.getElementById('bgSeg').addEventListener('click',e=>{if(e.target.tagName==='BUTTON'){document.querySelectorAll('#bgSeg button').forEach(b=>b.classList.remove('active'));e.target.classList.add('active');render();}});
+document.getElementById('modalClose').onclick=closeModal;
+document.getElementById('modalBg').onclick=e=>{if(e.target.id==='modalBg')closeModal();};
+document.getElementById('dlZip').onclick=downloadZip;
+loadAll();
+</script>
+</body>
+</html>
